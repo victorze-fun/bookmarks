@@ -123,3 +123,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'dashboard' # si el párametro next no existe
 LOGIN_URL = 'login' # si accede a una página protegida y no esta authenticado
 LOGOUT_URL = 'logout'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
