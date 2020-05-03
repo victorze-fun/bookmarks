@@ -25,7 +25,7 @@ SECRET_KEY = '29=kgi@$!^*9us)p2mtsozzv5w11gcq73=)dl$qir*kst)r8ff'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -133,4 +135,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
 ]
+
+# Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('AUTH_FACEBOOK_KEY') # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('AUTH_FACEBOOK_SECRET') # Facebook App Secret
+
+# Permisos adicionales que solicita a los usuarios de Facebook
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# Twitter
+SOCIAL_AUTH_TWITTER_KEY =  os.environ.get('AUTH_TWITTER_KEY') # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET =  os.environ.get('AUTH_TWITTER_SECRET') # Twitter API Secret
+
+# Google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('AUTH_GOOGLE_OAUTH2_KEY') # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('AUTH_GOOGLE_OAUTH2_SECRET') # Google Consumer Secret
